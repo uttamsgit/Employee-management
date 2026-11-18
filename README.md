@@ -1,6 +1,6 @@
-#🚀 Ivaans Clothing Store - Employee Management System
+🚀 Ivaans Clothing Store - Employee Management System
 Self-Healing DevSecOps Platform on AWS EKS
-#📌 Project Overview
+📌 Project Overview
 
 The Ivaans Clothing Store Employee Management System is a cloud-native, containerized web application designed to manage employee information through a secure and scalable platform.
 
@@ -16,7 +16,7 @@ Centralized Logging
 Monitoring & Alerting
 Self-Healing Infrastructure
 Secure Application Delivery
-#🏢 Business Use Case
+🏢 Business Use Case
 
 Ivaans Clothing Store requires an internal web portal to manage employee records efficiently.
 
@@ -36,7 +36,7 @@ Managers and administrators should be able to:
 
 ✅ Receive Incident Alerts
 
-#🏗️ Solution Architecture
+🏗️ Solution Architecture
 Plain Text
 ┌─────────────────┐
 │ Users │
@@ -110,7 +110,7 @@ Prometheus Alerts
 ┌──────────────────┐
 │ PagerDuty │
 └──────────────────┘
-#🚀 AWS Infrastructure Architecture
+🚀 AWS Infrastructure Architecture
 Plain Text
 AWS Cloud
 │
@@ -199,7 +199,7 @@ ivaans-employee-management/
 │ └── argocd/
 │
 └── README.md
-#🎯 Application Features
+🎯 Application Features
 Authentication
 Secure Login
 JWT Authentication
@@ -224,7 +224,7 @@ High CPU Usage
 High Memory Usage
 Failed Deployments
 Database Connectivity Issues
-#🔄 CI/CD Pipeline
+🔄 CI/CD Pipeline
 Plain Text
 Developer Pushes Code
 │
@@ -252,7 +252,7 @@ ArgoCD
 │
 ▼
 AWS EKS Cluster
-#🔐 DevSecOps Implementation
+🔐 DevSecOps Implementation
 TFLint
 
 Terraform code quality checks
@@ -269,7 +269,7 @@ GitHub Actions
 
 Automated security validation
 
-#📊 Monitoring & Observability
+📊 Monitoring & Observability
 Prometheus Metrics
 CPU Usage
 Memory Usage
@@ -282,7 +282,7 @@ Kubernetes Cluster Dashboard
 Application Dashboard
 Infrastructure Dashboard
 JVM Dashboard
-#📝 Centralized Logging
+📝 Centralized Logging
 Grafana Alloy
 
 Collects logs from:
@@ -299,7 +299,7 @@ Sample Query:
 Plain Text
 logql isn’t fully supported. Syntax highlighting is based on Plain Text.
 {app="employee-management"} |= "ERROR"
-#🚨 Incident Management
+🚨 Incident Management
 
 PagerDuty receives alerts for:
 
@@ -309,7 +309,7 @@ High Memory Usage
 Pod CrashLoops
 Database Outages
 Node Failures
-#♻️ Self-Healing Demonstration
+♻️ Self-Healing Demonstration
 Kubernetes Self-Healing
 Shell
 kubectl delete pod employee-backend
@@ -326,7 +326,7 @@ kubectl edit deployment employee-backend
 
 ArgoCD detects configuration drift and automatically restores the desired state.
 
-#📈 Future Enhancements
+📈 Future Enhancements
 Multi-Tenant Support
 Employee Attendance Module
 Payroll Management
