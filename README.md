@@ -1,359 +1,324 @@
-🚀 Ivaans Clothing Store - Employee Management System
-Self-Healing DevSecOps Platform on AWS EKS
-📌 Project Overview
+# 🚀 Ivaans Clothing Store - Employee Management System
 
-The Ivaans Clothing Store Employee Management System is a cloud-native, containerized web application designed to manage employee information through a secure and scalable platform.
+![AWS](https://img.shields.io/badge/AWS-EKS-orange)
+![Terraform](https://img.shields.io/badge/Terraform-IaC-blue)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-blue)
+![ArgoCD](https://img.shields.io/badge/ArgoCD-GitOps-red)
+![Prometheus](https://img.shields.io/badge/Prometheus-Monitoring-orange)
+![Grafana](https://img.shields.io/badge/Grafana-Observability-yellow)
+![Loki](https://img.shields.io/badge/Loki-Logging-purple)
 
-The application follows modern DevOps, GitOps, Observability, and DevSecOps practices by leveraging AWS EKS, Terraform, GitHub Actions, ArgoCD, Prometheus, Grafana, Loki, Alloy, and PagerDuty.
+## 📖 Overview
 
-This project demonstrates end-to-end implementation of:
+The **Ivaans Clothing Store Employee Management System** is a cloud-native application builtnd managers to securely manage employee data while leveraging:
 
-Infrastructure as Code (IaC)
-CI/CD Automation
-GitOps Deployment
-Kubernetes Orchestration
-Centralized Logging
-Monitoring & Alerting
-Self-Healing Infrastructure
-Secure Application Delivery
-🏢 Business Use Case
+- Infrastructure as Code (Terraform)
+- Kubernetes Orchestration (Amazon EKS)
+- GitOps Deployment (ArgoCD)
+- CI/CD Automation (GitHub Actions)
+- Monitoring & Alerting (Prometheus + Grafana)
+- Centralized Logging (Loki + Alloy)
+- Incident Response (PagerDuty)
 
-Ivaans Clothing Store requires an internal web portal to manage employee records efficiently.
+---
 
-Managers and administrators should be able to:
+## 🏢 Business Use Case
 
-✅ Login Securely
+The application provides an internal employee management portal for Ivaans Clothing Store.
 
-✅ Add Employees
+### Features
 
-✅ Update Employee Information
+✅ User Authentication
+
+✅ Add Employee
 
 ✅ View Employees
 
-✅ Delete Employees
+✅ Update Employee
 
-✅ Monitor Application Health
+✅ Delete Employee
 
-✅ Receive Incident Alerts
+✅ Kubernetes Self-Healing
 
-🏗️ Solution Architecture
-Plain Text
-┌─────────────────┐
-│ Users │
-└────────┬────────┘
-│
-▼
-┌────────────────────────────┐
-│ AWS Application Load │
-│ Balancer (ALB) │
-└────────────┬───────────────┘
-│
-┌────────────────┴────────────────┐
-│ │
-▼ ▼
- 
-┌─────────────────┐ ┌─────────────────┐
-│ React Frontend │ │ Spring Boot API │
-│ Kubernetes Pods │ │ Kubernetes Pods │
-└────────┬────────┘ └────────┬────────┘
-│ │
-└──────────────┬──────────────────┘
-│
-▼
-┌─────────────────────┐
-│ PostgreSQL RDS │
-│ Private Subnet │
-└─────────────────────┘
- 
-─────────────────────────────────────────────────────────────
- 
-Observability & Monitoring Layer
- 
-┌──────────────────────────────┐
-│ Prometheus │
-└─────────────┬────────────────┘
-▼
-┌──────────────────────────────┐
-│ Grafana │
-└──────────────────────────────┘
- 
-─────────────────────────────────────────────────────────────
- 
-Centralized Logging Layer
- 
-Application Logs
-│
-▼
-┌──────────────────┐
-│ Grafana Alloy │
-└────────┬─────────┘
-▼
-┌──────────────────┐
-│ Grafana Loki │
-└────────┬─────────┘
-▼
-┌──────────────────┐
-│ Grafana Dashboards│
-└──────────────────┘
- 
-─────────────────────────────────────────────────────────────
- 
-Alerting Layer
- 
-Prometheus Alerts
-│
-▼
-┌──────────────────┐
-│ AlertManager │
-└────────┬─────────┘
-▼
-┌──────────────────┐
-│ PagerDuty │
-└──────────────────┘
-🚀 AWS Infrastructure Architecture
-Plain Text
-AWS Cloud
-│
-├── VPC
-│
-├── Public Subnets
-│ ├── Application Load Balancer
-│ └── NAT Gateway
-│
-├── Private Subnets
-│ ├── EKS Cluster
-│ │
-│ ├── Worker Node 1
-│ │ ├── React Frontend Pod
-│ │ ├── Grafana Alloy
-│ │
-│ ├── Worker Node 2
-│ │ ├── Spring Boot Pod
-│ │ ├── Prometheus
-│ │
-│ ├── Worker Node 3
-│ │ ├── Grafana
-│ │ ├── Loki
-│ │ ├── ArgoCD
-│ │ └── AlertManager
-│ │
-│ └── PostgreSQL RDS
-│
-└── AWS ECR
- 
-🛠️ Technology Stack
-Category	Technology
-Frontend	React.js
-Backend	Spring Boot
-Database	PostgreSQL RDS
-Containerization	Docker
-Orchestration	Kubernetes (EKS)
-Infrastructure as Code	Terraform
-Source Control	GitHub
-CI/CD	GitHub Actions
-GitOps	ArgoCD
-Monitoring	Prometheus
-Visualization	Grafana
-Logging	Grafana Loki
-Log Collection	Grafana Alloy
-Alerting	AlertManager
-Incident Management	PagerDuty
-Image Registry	AWS ECR
-📂 Project Structure
-Plain Text
+✅ Monitoring & Alerting
+
+✅ Centralized Logging
+
+---
+
+# 🏗️ Solution Architecture
+
+```mermaid
+flowchart TD
+
+A[Users] --> B[AWS Application Load Balancer]
+
+B --> C[React Frontend]
+C --> D[Spring Boot Backend]
+D --> E[PostgreSQL RDS]
+
+D --> F[Prometheus]
+F --> G[Grafana]
+
+D --> H[Grafana Alloy]
+H --> I[Grafana Loki]
+I --> G
+
+F --> J[AlertManager]
+J --> K[PagerDuty]
+```
+
+---
+
+# ☁️ AWS Infrastructure Architecture
+
+```mermaid
+flowchart TD
+
+A[VPC]
+
+A --> B[Public Subnets]
+A --> C[Private Subnets]
+
+B --> D[Application Load Balancer]
+B --> E[NAT Gateway]
+
+C --> F[EKS Cluster]
+
+F --> G[React Frontend Pods]
+F --> H[Spring Boot Pods]
+F --> I[Prometheus]
+F --> J[Grafana]
+F --> K[Loki]
+F --> L[Alloy]
+F --> M[ArgoCD]
+
+C --> N[RDS PostgreSQL]
+
+O[AWS ECR] --> F
+```
+
+---
+
+# 🚀 DevOps Workflow
+
+```mermaid
+flowchart LR
+
+A[Developer Pushes Code] --> B[GitHub Repository]
+
+B --> C[GitHub Actions]
+
+C --> D[Maven Build]
+
+D --> E[Unit Testing]
+
+E --> F[Checkov Scan]
+
+F --> G[TFLint]
+
+G --> H[Trivy Scan]
+
+H --> I[Docker Build]
+
+I --> J[Push Image to ECR]
+
+J --> K[Update GitOps Repository]
+
+K --> L[ArgoCD]
+
+L --> M[AWS EKS]
+```
+
+---
+
+# 📊 Monitoring Architecture
+
+```mermaid
+flowchart LR
+
+A[Spring Boot Application]
+--> B[Actuator Metrics]
+
+B --> C[Prometheus]
+
+C --> D[Grafana Dashboards]
+```
+
+---
+
+# 📝 Logging Architecture
+
+```mermaid
+flowchart LR
+
+A[Application Logs]
+--> B[Grafana Alloy]
+
+B --> C[Grafana Loki]
+
+C --> D[Grafana Dashboard]
+```
+
+---
+
+# 🚨 Alerting Flow
+
+```mermaid
+flowchart LR
+
+A[Prometheus]
+
+A --> B[AlertManager]
+
+B --> C[PagerDuty]
+
+C --> D[Email]
+
+C --> E[Mobile Notification]
+```
+
+---
+
+# 🛠️ Technology Stack
+
+| Category | Technology |
+|-----------|-----------|
+| Frontend | React.js |
+| Backend | Spring Boot |
+| Database | PostgreSQL RDS |
+| Containerization | Docker |
+| Orchestration | Kubernetes (EKS) |
+| Infrastructure as Code | Terraform |
+| CI/CD | GitHub Actions |
+| GitOps | ArgoCD |
+| Monitoring | Prometheus |
+| Visualization | Grafana |
+| Logging | Loki |
+| Log Collection | Alloy |
+| Alerting | AlertManager |
+| Incident Management | PagerDuty |
+| Container Registry | AWS ECR |
+
+---
+
+# 📂 Project Structure
+
+```text
 ivaans-employee-management/
 │
 ├── frontend/
-│ ├── src/
-│ ├── public/
-│ └── Dockerfile
+│   ├── src/
+│   ├── public/
+│   └── Dockerfile
 │
 ├── backend/
-│ ├── src/
-│ ├── pom.xml
-│ └── Dockerfile
+│   ├── src/
+│   ├── pom.xml
+│   └── Dockerfile
 │
 ├── terraform/
-│ ├── modules/
-│ │ ├── vpc/
-│ │ ├── eks/
-│ │ ├── ecr/
-│ │ ├── rds/
-│ │ ├── alb/
-│ │ ├── iam/
-│ │ └── security-groups/
-│ │
-│ └── environments/
-│ ├── dev/
-│ └── prod/
+│   ├── modules/
+│   │   ├── vpc/
+│   │   ├── eks/
+│   │   ├── ecr/
+│   │   ├── rds/
+│   │   ├── alb/
+│   │   └── iam/
 │
 ├── kubernetes/
-│ ├── frontend/
-│ ├── backend/
-│ ├── ingress/
-│ └── monitoring/
+│   ├── frontend/
+│   ├── backend/
+│   ├── ingress/
+│   └── monitoring/
 │
 ├── gitops/
-│ ├── frontend/
-│ ├── backend/
-│ └── argocd/
+│   ├── frontend/
+│   ├── backend/
+│   └── argocd/
 │
 └── README.md
-🎯 Application Features
-Authentication
-Secure Login
-JWT Authentication
-Role-Based Access Control
-Employee Management
-Add Employee
-View Employee
-Update Employee
-Delete Employee
-Search Employee
-Monitoring
-Application Health Metrics
-JVM Metrics
-Kubernetes Metrics
-Logging
-Application Logs
-Kubernetes Logs
-Error Tracking
-Alerting
-Application Down
-High CPU Usage
-High Memory Usage
-Failed Deployments
-Database Connectivity Issues
-🔄 CI/CD Pipeline
-Plain Text
-Developer Pushes Code
-│
-▼
-GitHub Actions
-│
-├── Code Build
-│
-├── Unit Testing
-│
-├── TFLint Scan
-│
-├── Checkov Scan
-│
-├── Trivy Scan
-│
-├── Docker Build
-│
-├── Push Image to ECR
-│
-└── Update GitOps Repository
-│
-▼
-ArgoCD
-│
-▼
-AWS EKS Cluster
-🔐 DevSecOps Implementation
-TFLint
+```
 
-Terraform code quality checks
+---
 
-Checkov
+# 🔐 DevSecOps Controls
 
-Infrastructure security scanning
+### Terraform Validation
 
-Trivy
+```bash
+terraform validate
+```
 
-Container vulnerability scanning
+### Terraform Linting
 
-GitHub Actions
+```bash
+tflint
+```
 
-Automated security validation
+### Infrastructure Security Scan
 
-📊 Monitoring & Observability
-Prometheus Metrics
-CPU Usage
-Memory Usage
-Node Health
-Pod Health
-Request Rate
-Response Time
-Grafana Dashboards
-Kubernetes Cluster Dashboard
-Application Dashboard
-Infrastructure Dashboard
-JVM Dashboard
-📝 Centralized Logging
-Grafana Alloy
+```bash
+checkov -d .
+```
 
-Collects logs from:
+### Container Image Scan
 
-Spring Boot Pods
-React Pods
-Kubernetes Nodes
-Grafana Loki
+```bash
+trivy image employee-app:latest
+```
 
-Stores and indexes logs for searching and troubleshooting.
+---
 
-Sample Query:
+# ♻️ Self-Healing Demonstration
 
-Plain Text
-logql isn’t fully supported. Syntax highlighting is based on Plain Text.
-{app="employee-management"} |= "ERROR"
-🚨 Incident Management
+Delete an application pod:
 
-PagerDuty receives alerts for:
-
-Application Failures
-High CPU Usage
-High Memory Usage
-Pod CrashLoops
-Database Outages
-Node Failures
-♻️ Self-Healing Demonstration
-Kubernetes Self-Healing
-Shell
+```bash
 kubectl delete pod employee-backend
+```
 
 Kubernetes automatically recreates the pod.
 
-GitOps Drift Detection
+Verify:
 
-Manual Kubernetes changes:
+```bash
+kubectl get pods -w
+```
 
-Shell
-kubectl edit deployment employee-backend
- 
+---
 
-ArgoCD detects configuration drift and automatically restores the desired state.
+# 📈 Future Enhancements
 
-📈 Future Enhancements
-Multi-Tenant Support
-Employee Attendance Module
-Payroll Management
-AWS Secrets Manager Integration
-AWS WAF Integration
-Horizontal Pod Autoscaler (HPA)
-Cluster Autoscaler
-Splunk Observability Integration
-OpenTelemetry Integration
-👨‍💻 Author
+- Horizontal Pod Autoscaler (HPA)
+- Cluster Autoscaler
+- AWS Secrets Manager
+- OpenTelemetry
+- Splunk Observability
+- Multi-Tenant Architecture
+- Attendance Module
+- Payroll Management
 
-Uttam Sharma
+---
 
-Cloud | DevOps | Kubernetes | Terraform | AWS | GitOps | Observability | Splunk
+# 👨‍💻 Author
 
-⭐ Key Learning Outcomes
-Terraform Infrastructure Automation
-AWS EKS Administration
-Docker Containerization
-GitHub Actions CI/CD
-ArgoCD GitOps Deployments
-Kubernetes Self-Healing
-Prometheus Monitoring
-Grafana Dashboards
-Loki Log Aggregation
-DevSecOps Security Scanning
-Incident Management with PagerDuty
-Production-Grade Cloud-Native Architecture
+### Uttam Singh
 
-This project serves as a complete end-to-end DevSecOps implementation showcasing modern cloud-native deployment, observability, security, and automation practices on AWS.
+Cloud Engineer | DevOps Engineer | AWS | Terraform | Kubernetes | GitOps | Observability
+
+---
+
+## ⭐ Key Learning Outcomes
+
+- Terraform Infrastructure Automation
+- AWS EKS Administration
+- Docker Containerization
+- GitHub Actions CI/CD
+- GitOps with ArgoCD
+- Kubernetes Self-Healing
+- Prometheus Monitoring
+- Grafana Observability
+- Loki Logging
+- DevSecOps Security Scanning
+- PagerDuty Alerting
