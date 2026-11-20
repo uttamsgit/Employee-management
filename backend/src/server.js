@@ -1,0 +1,31 @@
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import { ZodError } from 'zod';
+import authRoutes from './routes/auth.js';
+import employeeRoutes from './routes/employees.js';
+import departmentRoutes from './routes/departments.js';
+import dashboardRoutes from './routes/dashboard.js';
+import { requireAuth } from './middleware/auth.js';
+
+const app=express();
+app.use(helmet());
+app.use(cors({origin:true}));
+app.use(express.json({limit:'1mb'}));
+app.use('/api/auth',rateLimit({windowMs:15*60*1000,limit:30}),authRoutes);
+app.get('/api/health',(_req,res)=>res.json({status:'ok',service:'employee-center-api'}));
+app.use('/api',requireAuth);
+app.use('/api/employees',employeeRoutes);
+app.use('/api/departments',departmentRoutes);
+app.use('/api/dashboard',dashboardRoutes);
+app.use((err,_req,res,_next)=>{
+  console.error(err);
+  if(err instanceof ZodError) return res.status(400).json({message:'Please check the submitted fields',errors:err.issues});
+  if(err.code==='P2002') return res.status(409).json({message:'An employee or department with this unique value already exists.'});
+  if(err.code==='P2025') return res.status(404).json({message:'Record not found'});
+  res.status(500).json({message:'Something went wrong. Please try again.'});
+});
+const port=process.env.PORT||4000;
+app.listen(port,()=>console.log(`Employee Center API listening on ${port}`));

@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EmployeeStatus {
+  ACTIVE
+  ON_LEAVE
+  INACTIVE
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+}
+
+model Department {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  description String?
+  employees   Employee[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Employee {
+  id             String         @id @default(cuid())
+  employeeCode   String         @unique
+  firstName      String
+  lastName       String
+  email          String         @unique
+  phone          String?
+  jobTitle       String
+  departmentId   String
+  department     Department     @relation(fields: [departmentId], references: [id])
+  salary         Decimal        @db.Decimal(12, 2)
+  joiningDate    DateTime
+  leavingDate    DateTime?
+  status         EmployeeStatus @default(ACTIVE)
+  employmentType String         @default("Full-time")
+  location       String?
+  manager        String?
+  notes          String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
