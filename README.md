@@ -52,6 +52,14 @@ ADMIN_EMAIL="admin@employeecenter.local"
 ADMIN_PASSWORD="Admin@12345"
 ```
 
+### .env file
+POSTGRES_DB=employee_center
+POSTGRES_USER=employee_admin
+POSTGRES_PASSWORD=change_this_db_password
+JWT_SECRET=change_this_to_a_long_random_secret
+ADMIN_EMAIL=admin@employeecenter.local
+ADMIN_PASSWORD=Admin@12345
+
 ### Backend
 
 ```bash
